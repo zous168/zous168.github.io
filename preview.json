@@ -1,0 +1,1677 @@
+{
+  "pageMeta": {
+    "title": "统一布局演示 - 电影网站",
+    "description": "展示使用统一布局容器实现的 Grid, List, Horizontal, Waterfall 效果。",
+    "keywords": [
+      "布局",
+      "Grid",
+      "List",
+      "Horizontal",
+      "Waterfall",
+      "演示"
+    ]
+  },
+  "rule": [
+    {
+      "type": "async-app",
+      "id": "dynamic-application",
+      "field": "appData",
+      "props": {
+        "title": "动态加载的应用",
+        "showHeader": true,
+        "theme": "dark",
+        "permissions": [
+          "read",
+          "write"
+        ],
+        "config": {
+          "refreshInterval": 30000,
+          "maxItems": 50,
+          "enableCache": true
+        }
+      }
+    },
+    {
+      "type": "qrcode",
+      "id": "share-qrcode",
+      "field": "shareData",
+      "props": {
+        "title": "扫码分享",
+        "size": 200,
+        "color": "#000000",
+        "background": "#ffffff",
+        "level": "H",
+        "description": "扫描二维码分享到社交媒体",
+        "width": "250px"
+      }
+    },
+    {
+      "type": "functional-message",
+      "id": "func-msg-1",
+      "props": {
+        "text": "这是来自 Demo 页面的函数式组件！",
+        "level": "info"
+      }
+    },
+    {
+      "type": "helloworld",
+      "id": "helloWorld-example",
+      "title": "场景 HelloWorld: 插件示例",
+      "props": {
+        "message": "Hello from plugin!",
+        "color": "blue",
+        "style": {
+          "fontSize": "1.2em",
+          "fontWeight": "bold"
+        }
+      }
+    },
+    {
+      "type": "elTabs",
+      "id": "tabs-example",
+      "title": "场景 Tabs: 选项卡布局",
+      "props": {
+        "type": "card",
+        "tabPosition": "top",
+        "stretch": true,
+        "closable": false,
+        "animated": true
+      },
+      "children": [
+        {
+          "type": "el-tab-pane",
+          "props": {
+            "label": "推荐",
+            "name": "recommend"
+          },
+          "children": [
+            {
+              "type": "fcGenericCarousel",
+              "id": "hero-video-main",
+              "field": "heroVideoMainData",
+              "props": {
+                "isResponsive": false,
+                "autoplay": true,
+                "interval": 5000,
+                "direction": "horizontal",
+                "animation": "slide",
+                "indicatorType": "progress",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "image",
+                    "title": "图片URL"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "subtitle",
+                    "title": "副标题"
+                  },
+                  {
+                    "type": "subform",
+                    "field": "ctaButton",
+                    "title": "按钮"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-grid",
+              "title": "场景 1: 电影卡片网格 (Grid) - API分页",
+              "info": "最新热门电影推荐",
+              "props": {
+                "mode": "grid",
+                "maxRows": 2,
+                "columns": {
+                  "xs": 2,
+                  "sm": 3,
+                  "md": 4,
+                  "lg": 5
+                },
+                "pagination": {
+                  "enabled": true,
+                  "pageSize": 5,
+                  "paginationMode": "scroll",
+                  "paginationSource": "api",
+                  "apiUrl": "/api/items/{id}?page={page}&size={size}"
+                },
+                "showMoreLink": "/category/movies?sort=latest",
+                "itemLayout": "videoCard",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "thumbnail",
+                    "title": "缩略图"
+                  },
+                  {
+                    "type": "input",
+                    "field": "duration",
+                    "title": "时长"
+                  },
+                  {
+                    "type": "input",
+                    "field": "rating",
+                    "title": "评分"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  }
+                ]
+              },
+              "field": "scenarioGridData"
+            }
+          ]
+        },
+        {
+          "type": "el-tab-pane",
+          "props": {
+            "label": "电视剧",
+            "name": "tv"
+          },
+          "children": [
+            {
+              "type": "elAlert",
+              "id": "alert-example",
+              "title": "场景 Alert: 信息提示",
+              "props": {
+                "type": "info",
+                "description": "这里可以显示一些全局通知或提示信息。",
+                "showIcon": true,
+                "closable": true
+              }
+            },
+            {
+              "type": "html",
+              "id": "html-example",
+              "title": "场景 HTML: 自定义内容渲染",
+              "attrs": {},
+              "style": {
+                "padding": "15px",
+                "border": "1px dashed #ccc",
+                "marginBottom": "20px"
+              },
+              "children": [
+                "<div style=\"color:blue;\">\n html html html html html html html html html1111\n  </div>"
+              ]
+            },
+            {
+              "type": "div",
+              "id": "div-example-text",
+              "title": "场景 Div: 包含文本",
+              "style": {
+                "padding": "10px",
+                "border": "1px solid lightblue",
+                "marginBottom": "10px"
+              },
+              "children": [
+                "这是一个包含在 div 中的文本字符串。",
+                "第二行文本，使用 white-space: pre-line (如果父级设置) 来换行。"
+              ]
+            },
+            {
+              "type": "fcGenericCarousel",
+              "id": "vertical-carousel-demo",
+              "field": "verticalCarouselData",
+              "props": {
+                "isResponsive": false,
+                "autoplay": false,
+                "interval": 5000,
+                "direction": "vertical",
+                "animation": "fade",
+                "indicatorType": "line",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "image",
+                    "title": "图片URL"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "subtitle",
+                    "title": "副标题"
+                  },
+                  {
+                    "type": "object",
+                    "field": "ctaButton",
+                    "title": "按钮"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-grid",
+              "title": "场景 1: 电影卡片网格 (Grid) - API分页",
+              "info": "最新热门电影推荐",
+              "props": {
+                "mode": "grid",
+                "maxRows": 2,
+                "columns": {
+                  "xs": 2,
+                  "sm": 3,
+                  "md": 4,
+                  "lg": 5
+                },
+                "pagination": {
+                  "enabled": true,
+                  "pageSize": 5,
+                  "paginationMode": "scroll",
+                  "paginationSource": "api",
+                  "apiUrl": "/api/items/{id}?page={page}&size={size}"
+                },
+                "showMoreLink": "/category/movies?sort=latest",
+                "itemLayout": "videoCard",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "thumbnail",
+                    "title": "缩略图"
+                  },
+                  {
+                    "type": "input",
+                    "field": "duration",
+                    "title": "时长"
+                  },
+                  {
+                    "type": "input",
+                    "field": "rating",
+                    "title": "评分"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  }
+                ]
+              },
+              "field": "scenarioGridData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-list",
+              "title": "场景 2: 热播排行榜 (List) - URL分页",
+              "info": "根据最近一周播放量排序",
+              "props": {
+                "mode": "list",
+                "maxRows": 3,
+                "pagination": {
+                  "enabled": true,
+                  "pageSize": 5,
+                  "paginationMode": "button",
+                  "paginationSource": "url"
+                },
+                "itemLayout": "listItem",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  },
+                  {
+                    "type": "input",
+                    "field": "description",
+                    "title": "描述"
+                  },
+                  {
+                    "type": "input",
+                    "field": "thumbnail",
+                    "title": "缩略图"
+                  },
+                  {
+                    "type": "input",
+                    "field": "tag",
+                    "title": "标签"
+                  }
+                ]
+              },
+              "field": "scenarioListData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-horizontal",
+              "title": "场景 3: 为您推荐 (Horizontal Scroll)",
+              "props": {
+                "mode": "horizontal",
+                "rows": 1,
+                "itemHeight": "auto",
+                "itemWidth": "160px",
+                "showMoreLink": "/recommendations",
+                "itemLayout": "videoCard",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "thumbnail",
+                    "title": "缩略图"
+                  },
+                  {
+                    "type": "input",
+                    "field": "episodes",
+                    "title": "剧集信息"
+                  },
+                  {
+                    "type": "input",
+                    "field": "rating",
+                    "title": "评分"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  }
+                ]
+              },
+              "field": "scenarioHorizontalData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-waterfall",
+              "title": "场景 4: 视频卡片瀑布流 (Waterfall with Video Cards)",
+              "props": {
+                "mode": "waterfall",
+                "columns": {
+                  "xs": 2,
+                  "sm": 4,
+                  "md": 6,
+                  "lg": 6
+                },
+                "pagination": {
+                  "enabled": true,
+                  "pageSize": 8,
+                  "paginationMode": "scroll",
+                  "paginationSource": "api",
+                  "apiUrl": "/api/items/{id}?page={page}&size={size}"
+                },
+                "itemLayout": "videoCard",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "thumbnail",
+                    "title": "缩略图"
+                  },
+                  {
+                    "type": "input",
+                    "field": "duration",
+                    "title": "时长"
+                  },
+                  {
+                    "type": "input",
+                    "field": "rating",
+                    "title": "评分"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  }
+                ]
+              },
+              "field": "scenarioWaterfallData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-feed",
+              "title": "场景 5: 用户动态 (List)",
+              "info": "展示用户活动信息流",
+              "props": {
+                "mode": "list",
+                "itemLayout": "feedItem",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "userAvatar",
+                    "title": "用户头像"
+                  },
+                  {
+                    "type": "input",
+                    "field": "userName",
+                    "title": "用户名"
+                  },
+                  {
+                    "type": "input",
+                    "field": "actionText",
+                    "title": "动作描述"
+                  },
+                  {
+                    "type": "input",
+                    "field": "content",
+                    "title": "内容摘要"
+                  },
+                  {
+                    "type": "input",
+                    "field": "timestamp",
+                    "title": "时间戳"
+                  },
+                  {
+                    "type": "array",
+                    "field": "attachedImages",
+                    "title": "附加图片"
+                  }
+                ]
+              },
+              "field": "scenarioFeedData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-image-posts",
+              "title": "场景 6: 图文卡片 (Grid)",
+              "info": "展示带图片的文章摘要",
+              "props": {
+                "mode": "grid",
+                "columns": {
+                  "xs": 1,
+                  "sm": 2,
+                  "md": 3
+                },
+                "itemLayout": "imagePost",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "thumbnail",
+                    "title": "图片URL"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "文章标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "summary",
+                    "title": "摘要"
+                  },
+                  {
+                    "type": "input",
+                    "field": "userName",
+                    "title": "作者"
+                  },
+                  {
+                    "type": "input",
+                    "field": "timestamp",
+                    "title": "发布时间"
+                  }
+                ]
+              },
+              "field": "scenarioImagePostsData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-no-image-posts",
+              "title": "场景 7: 纯文本列表 (List)",
+              "info": "展示不带图片的文章列表",
+              "props": {
+                "mode": "list",
+                "itemLayout": "noImagePost",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "文章标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "content",
+                    "title": "内容"
+                  },
+                  {
+                    "type": "input",
+                    "field": "userName",
+                    "title": "作者"
+                  },
+                  {
+                    "type": "input",
+                    "field": "timestamp",
+                    "title": "发布时间"
+                  }
+                ]
+              },
+              "field": "scenarioNoImagePostsData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-link-list",
+              "title": "场景 9: 纯链接列表 (List)",
+              "info": "仅包含标题和链接的项目列表",
+              "props": {
+                "mode": "list",
+                "itemLayout": "linkItem",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  }
+                ]
+              },
+              "field": "scenarioLinkListData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-icon-nav",
+              "title": "场景 10: 图标导航 (Grid)",
+              "info": "使用图标和文本进行导航",
+              "props": {
+                "mode": "grid",
+                "columns": {
+                  "xs": 5,
+                  "sm": 7,
+                  "md": 8,
+                  "lg": 9
+                },
+                "itemLayout": "iconNavItem",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "iconUrl",
+                    "title": "图标URL"
+                  },
+                  {
+                    "type": "input",
+                    "field": "text",
+                    "title": "文本"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  }
+                ]
+              },
+              "field": "scenarioIconNavData"
+            }
+          ]
+        },
+        {
+          "type": "el-tab-pane",
+          "props": {
+            "label": "动漫",
+            "name": "anime"
+          },
+          "children": [
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-grid",
+              "title": "场景 1: 电影卡片网格 (Grid) - API分页",
+              "info": "最新热门电影推荐",
+              "props": {
+                "mode": "grid",
+                "maxRows": 2,
+                "columns": {
+                  "xs": 2,
+                  "sm": 3,
+                  "md": 4,
+                  "lg": 5
+                },
+                "pagination": {
+                  "enabled": true,
+                  "pageSize": 5,
+                  "paginationMode": "scroll",
+                  "paginationSource": "api",
+                  "apiUrl": "/api/items/{id}?page={page}&size={size}"
+                },
+                "showMoreLink": "/category/movies?sort=latest",
+                "itemLayout": "videoCard",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "thumbnail",
+                    "title": "缩略图"
+                  },
+                  {
+                    "type": "input",
+                    "field": "duration",
+                    "title": "时长"
+                  },
+                  {
+                    "type": "input",
+                    "field": "rating",
+                    "title": "评分"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  }
+                ]
+              },
+              "field": "scenarioGridData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-list",
+              "title": "场景 2: 热播排行榜 (List) - URL分页",
+              "info": "根据最近一周播放量排序",
+              "props": {
+                "mode": "list",
+                "maxRows": 3,
+                "pagination": {
+                  "enabled": true,
+                  "pageSize": 5,
+                  "paginationMode": "button",
+                  "paginationSource": "url"
+                },
+                "itemLayout": "listItem",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  },
+                  {
+                    "type": "input",
+                    "field": "description",
+                    "title": "描述"
+                  },
+                  {
+                    "type": "input",
+                    "field": "thumbnail",
+                    "title": "缩略图"
+                  },
+                  {
+                    "type": "input",
+                    "field": "tag",
+                    "title": "标签"
+                  }
+                ]
+              },
+              "field": "scenarioListData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-horizontal",
+              "title": "场景 3: 为您推荐 (Horizontal Scroll)",
+              "props": {
+                "mode": "horizontal",
+                "rows": 1,
+                "itemHeight": "auto",
+                "itemWidth": "160px",
+                "showMoreLink": "/recommendations",
+                "itemLayout": "videoCard",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "thumbnail",
+                    "title": "缩略图"
+                  },
+                  {
+                    "type": "input",
+                    "field": "episodes",
+                    "title": "剧集信息"
+                  },
+                  {
+                    "type": "input",
+                    "field": "rating",
+                    "title": "评分"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  }
+                ]
+              },
+              "field": "scenarioHorizontalData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-waterfall",
+              "title": "场景 4: 视频卡片瀑布流 (Waterfall with Video Cards)",
+              "props": {
+                "mode": "waterfall",
+                "columns": {
+                  "xs": 2,
+                  "sm": 4,
+                  "md": 6,
+                  "lg": 6
+                },
+                "pagination": {
+                  "enabled": true,
+                  "pageSize": 8,
+                  "paginationMode": "scroll",
+                  "paginationSource": "api",
+                  "apiUrl": "/api/items/{id}?page={page}&size={size}"
+                },
+                "itemLayout": "videoCard",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "thumbnail",
+                    "title": "缩略图"
+                  },
+                  {
+                    "type": "input",
+                    "field": "duration",
+                    "title": "时长"
+                  },
+                  {
+                    "type": "input",
+                    "field": "rating",
+                    "title": "评分"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  }
+                ]
+              },
+              "field": "scenarioWaterfallData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-feed",
+              "title": "场景 5: 用户动态 (List)",
+              "info": "展示用户活动信息流",
+              "props": {
+                "mode": "list",
+                "itemLayout": "feedItem",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "userAvatar",
+                    "title": "用户头像"
+                  },
+                  {
+                    "type": "input",
+                    "field": "userName",
+                    "title": "用户名"
+                  },
+                  {
+                    "type": "input",
+                    "field": "actionText",
+                    "title": "动作描述"
+                  },
+                  {
+                    "type": "input",
+                    "field": "content",
+                    "title": "内容摘要"
+                  },
+                  {
+                    "type": "input",
+                    "field": "timestamp",
+                    "title": "时间戳"
+                  },
+                  {
+                    "type": "array",
+                    "field": "attachedImages",
+                    "title": "附加图片"
+                  }
+                ]
+              },
+              "field": "scenarioFeedData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-image-posts",
+              "title": "场景 6: 图文卡片 (Grid)",
+              "info": "展示带图片的文章摘要",
+              "props": {
+                "mode": "grid",
+                "columns": {
+                  "xs": 1,
+                  "sm": 2,
+                  "md": 3
+                },
+                "itemLayout": "imagePost",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "thumbnail",
+                    "title": "图片URL"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "文章标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "summary",
+                    "title": "摘要"
+                  },
+                  {
+                    "type": "input",
+                    "field": "userName",
+                    "title": "作者"
+                  },
+                  {
+                    "type": "input",
+                    "field": "timestamp",
+                    "title": "发布时间"
+                  }
+                ]
+              },
+              "field": "scenarioImagePostsData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-no-image-posts",
+              "title": "场景 7: 纯文本列表 (List)",
+              "info": "展示不带图片的文章列表",
+              "props": {
+                "mode": "list",
+                "itemLayout": "noImagePost",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "文章标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "content",
+                    "title": "内容"
+                  },
+                  {
+                    "type": "input",
+                    "field": "userName",
+                    "title": "作者"
+                  },
+                  {
+                    "type": "input",
+                    "field": "timestamp",
+                    "title": "发布时间"
+                  }
+                ]
+              },
+              "field": "scenarioNoImagePostsData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-link-list",
+              "title": "场景 9: 纯链接列表 (List)",
+              "info": "仅包含标题和链接的项目列表",
+              "props": {
+                "mode": "list",
+                "itemLayout": "linkItem",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "title",
+                    "title": "标题"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  }
+                ]
+              },
+              "field": "scenarioLinkListData"
+            },
+            {
+              "type": "fcGenericGrid",
+              "id": "scenario-icon-nav",
+              "title": "场景 10: 图标导航 (Grid)",
+              "info": "使用图标和文本进行导航",
+              "props": {
+                "mode": "grid",
+                "columns": {
+                  "xs": 5,
+                  "sm": 7,
+                  "md": 8,
+                  "lg": 9
+                },
+                "itemLayout": "iconNavItem",
+                "rule": [
+                  {
+                    "type": "input",
+                    "field": "id",
+                    "title": "ID"
+                  },
+                  {
+                    "type": "input",
+                    "field": "iconUrl",
+                    "title": "图标URL"
+                  },
+                  {
+                    "type": "input",
+                    "field": "text",
+                    "title": "文本"
+                  },
+                  {
+                    "type": "input",
+                    "field": "link",
+                    "title": "链接"
+                  }
+                ]
+              },
+              "field": "scenarioIconNavData"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "footer",
+      "id": "main-footer",
+      "field": "mainFooterData"
+    }
+  ],
+  "data": {
+    "appData": {
+      "items": [
+        {
+          "id": 1,
+          "name": "项目1",
+          "status": "active"
+        },
+        {
+          "id": 2,
+          "name": "项目2",
+          "status": "pending"
+        },
+        {
+          "id": 3,
+          "name": "项目3",
+          "status": "archived"
+        }
+      ],
+      "user": {
+        "id": "user123",
+        "role": "admin",
+        "preferences": {
+          "language": "zh-CN",
+          "notifications": true
+        }
+      },
+      "settings": {
+        "layout": "grid",
+        "sortBy": "date",
+        "orderDesc": true
+      }
+    },
+    "shareData": {
+      "url": "https://example.com/share?id=123456"
+    },
+    "heroVideoMainData": [
+      {
+        "id": "slide-1",
+        "image": "https://picsum.photos/seed/hero1/1200/500",
+        "title": "热门大片：《沙丘》震撼上映",
+        "subtitle": "史诗级科幻冒险，不容错过。",
+        "ctaButton": {
+          "text": "立即观看",
+          "link": "/play/movie/dune",
+          "variant": "primary"
+        }
+      },
+      {
+        "id": "slide-2",
+        "image": "https://picsum.photos/seed/hero2/1200/500",
+        "title": "独家剧集《权力的游戏前传》",
+        "subtitle": "龙族传奇，再续辉煌。",
+        "ctaButton": {
+          "text": "追剧更新",
+          "link": "/play/series/hotd",
+          "variant": "primary"
+        }
+      },
+      {
+        "id": "slide-3",
+        "image": "https://picsum.photos/seed/hero3/1200/500",
+        "title": "经典动漫《进击的巨人》最终季",
+        "subtitle": "人类与巨人的最终决战。",
+        "ctaButton": {
+          "text": "重温经典",
+          "link": "/play/anime/aot",
+          "variant": "primary"
+        }
+      }
+    ],
+    "verticalCarouselData": [
+      {
+        "id": "v-slide-1",
+        "image": "https://picsum.photos/seed/v-hero1/1200/500",
+        "title": "垂直轮播：《沙丘》震撼上映",
+        "subtitle": "史诗级科幻冒险，垂直演示。",
+        "ctaButton": {
+          "text": "立即观看",
+          "link": "/play/movie/dune",
+          "variant": "primary"
+        }
+      },
+      {
+        "id": "v-slide-2",
+        "image": "https://picsum.photos/seed/v-hero2/1200/500",
+        "title": "垂直轮播《权力的游戏前传》",
+        "subtitle": "龙族传奇，再续辉煌。",
+        "ctaButton": {
+          "text": "追剧更新",
+          "link": "/play/series/hotd",
+          "variant": "primary"
+        }
+      },
+      {
+        "id": "v-slide-3",
+        "image": "https://picsum.photos/seed/v-hero3/1200/500",
+        "title": "垂直轮播《进击的巨人》最终季",
+        "subtitle": "人类与巨人的最终决战。",
+        "ctaButton": {
+          "text": "重温经典",
+          "link": "/play/anime/aot",
+          "variant": "primary"
+        }
+      }
+    ],
+    "scenarioGridData": [
+      {
+        "id": "mov-001",
+        "title": "电影A - 一个足够长的标题来测试省略号的效果",
+        "thumbnail": "https://picsum.photos/seed/mov1/320/180",
+        "duration": "01:45:30",
+        "rating": "8.5",
+        "link": "/play/movie/001"
+      },
+      {
+        "id": "mov-002",
+        "title": "电影B",
+        "thumbnail": "https://picsum.photos/seed/mov2/320/180",
+        "duration": "02:10:00",
+        "rating": "9.1",
+        "link": "/play/movie/002"
+      },
+      {
+        "id": "mov-003",
+        "title": "电影C",
+        "thumbnail": "https://picsum.photos/seed/mov3/320/180",
+        "duration": "01:55:15",
+        "rating": "7.8",
+        "link": "/play/movie/003"
+      },
+      {
+        "id": "mov-004",
+        "title": "电影D",
+        "thumbnail": "https://picsum.photos/seed/mov4/320/180",
+        "duration": "02:05:45",
+        "rating": "8.2",
+        "link": "/play/movie/004"
+      },
+      {
+        "id": "mov-005",
+        "title": "电影E",
+        "thumbnail": "https://picsum.photos/seed/mov5/320/180",
+        "duration": "01:39:00",
+        "rating": "8.8",
+        "link": "/play/movie/005"
+      },
+      {
+        "id": "mov-006",
+        "title": "电影F",
+        "thumbnail": "https://picsum.photos/seed/mov6/320/180",
+        "duration": "01:48:00",
+        "rating": "7.5",
+        "link": "/play/movie/006"
+      },
+      {
+        "id": "mov-007",
+        "title": "电影G",
+        "thumbnail": "https://picsum.photos/seed/mov7/320/180",
+        "duration": "02:00:00",
+        "rating": "8.0",
+        "link": "/play/movie/007"
+      }
+    ],
+    "scenarioListData": [
+      {
+        "id": "rank-1",
+        "title": "某热门电影的热门电影热门电影",
+        "link": "/play/movie/hot1",
+        "description": "2亿播放, 这里可以有一些额外的描述信息",
+        "thumbnail": "https://picsum.photos/seed/rank1/80/45",
+        "tag": "Hot"
+      },
+      {
+        "id": "rank-2",
+        "title": "某热门剧集 - 第5集",
+        "link": "/play/series/hot2/ep5",
+        "description": "1.8亿播放",
+        "thumbnail": "https://picsum.photos/seed/rank2/80/45"
+      },
+      {
+        "id": "rank-3",
+        "title": "某热门动漫新番",
+        "link": "/play/anime/hot3",
+        "description": "1.5亿播放",
+        "thumbnail": "https://picsum.photos/seed/rank3/80/45",
+        "tag": "New"
+      },
+      {
+        "id": "rank-4",
+        "title": "另一个电影",
+        "link": "/play/movie/hot4",
+        "description": "1.2亿播放",
+        "thumbnail": null
+      },
+      {
+        "id": "rank-5",
+        "title": "纪录片精选",
+        "link": "/play/doc/hot5",
+        "description": "9千万播放",
+        "thumbnail": "https://picsum.photos/seed/rank5/80/45"
+      }
+    ],
+    "scenarioHorizontalData": [
+      {
+        "id": "rec-001",
+        "title": "推荐电影1",
+        "thumbnail": "https://picsum.photos/seed/rec1/180/101",
+        "rating": "8.1",
+        "link": "/play/movie/rec1"
+      },
+      {
+        "id": "rec-002",
+        "title": "推荐剧集2",
+        "thumbnail": "https://picsum.photos/seed/rec2/180/101",
+        "episodes": "更新至3集",
+        "link": "/play/series/rec2"
+      },
+      {
+        "id": "rec-003",
+        "title": "推荐动漫3",
+        "thumbnail": "https://picsum.photos/seed/rec3/180/101",
+        "rating": "9.0",
+        "link": "/play/anime/rec3"
+      },
+      {
+        "id": "rec-004",
+        "title": "推荐纪录片4",
+        "thumbnail": "https://picsum.photos/seed/rec4/180/101",
+        "link": "/play/doc/rec4"
+      },
+      {
+        "id": "rec-005",
+        "title": "推荐电影5",
+        "thumbnail": "https://picsum.photos/seed/rec5/180/101",
+        "rating": "7.5",
+        "link": "/play/movie/rec5"
+      },
+      {
+        "id": "rec-006",
+        "title": "推荐电影6",
+        "thumbnail": "https://picsum.photos/seed/rec6/180/101",
+        "rating": "8.3",
+        "link": "/play/movie/rec6"
+      }
+    ],
+    "scenarioWaterfallData": [
+      {
+        "id": "wf-vid-1",
+        "title": "瀑布流视频 1 (高)",
+        "thumbnail": "https://picsum.photos/seed/wf1/300/450",
+        "duration": "01:10:20",
+        "link": "#"
+      },
+      {
+        "id": "wf-vid-2",
+        "title": "瀑布流视频 2 (中)",
+        "thumbnail": "https://picsum.photos/seed/wf2/300/350",
+        "rating": "8.1",
+        "link": "#"
+      },
+      {
+        "id": "wf-vid-3",
+        "title": "瀑布流视频 3 (很高)",
+        "thumbnail": "https://picsum.photos/seed/wf3/300/500",
+        "link": "#"
+      },
+      {
+        "id": "wf-vid-4",
+        "title": "瀑布流视频 4",
+        "thumbnail": "https://picsum.photos/seed/wf4/300/400",
+        "duration": "02:05:00",
+        "link": "#"
+      },
+      {
+        "id": "wf-vid-5",
+        "title": "瀑布流视频 5 (特高)",
+        "thumbnail": "https://picsum.photos/seed/wf5/300/550",
+        "rating": "9.5",
+        "link": "#"
+      },
+      {
+        "id": "wf-vid-6",
+        "title": "瀑布流视频 6 (稍矮)",
+        "thumbnail": "https://picsum.photos/seed/wf6/300/380",
+        "link": "#"
+      },
+      {
+        "id": "wf-vid-7",
+        "title": "瀑布流视频 7",
+        "thumbnail": "https://picsum.photos/seed/wf7/300/480",
+        "link": "#"
+      },
+      {
+        "id": "wf-vid-8",
+        "title": "瀑布流视频 8",
+        "thumbnail": "https://picsum.photos/seed/wf8/300/420",
+        "duration": "00:55:10",
+        "link": "#"
+      }
+    ],
+    "scenarioFeedData": [
+      {
+        "id": "dyn-1",
+        "userAvatar": "https://picsum.photos/seed/user1/40/40",
+        "userName": "张三",
+        "actionText": "发布了新的想法",
+        "content": "今天天气真不错，阳光明媚，适合出去走走。希望下午也能保持！",
+        "timestamp": "5分钟前",
+        "attachedImages": [
+          "https://picsum.photos/seed/feed1a/250/150",
+          "https://picsum.photos/seed/feed1b/250/150",
+          "https://picsum.photos/seed/feed1c/250/150"
+        ]
+      },
+      {
+        "id": "dyn-2",
+        "userAvatar": "https://picsum.photos/seed/user2/40/40",
+        "userName": "李四",
+        "actionText": "评论了 张三 的想法",
+        "content": "确实，一起去公园吧？",
+        "timestamp": "3分钟前"
+      },
+      {
+        "id": "dyn-3",
+        "userAvatar": "https://picsum.photos/seed/user3/40/40",
+        "userName": "王五",
+        "actionText": "分享了一个链接",
+        "content": "这个开源库看起来很有用: github.com/some/repo",
+        "timestamp": "1小时前"
+      }
+    ],
+    "scenarioImagePostsData": [
+      {
+        "id": "imgp-1",
+        "thumbnail": "https://picsum.photos/seed/imgp1/400/250",
+        "title": "探索城市角落的咖啡馆",
+        "summary": "一杯好的咖啡能点亮一天。我们走访了几家隐藏在城市深处的特色咖啡馆，各有风情...",
+        "userName": "咖啡猎人",
+        "timestamp": "昨天"
+      },
+      {
+        "id": "imgp-2",
+        "thumbnail": "https://picsum.photos/seed/imgp2/400/250",
+        "title": "周末徒步路线推荐",
+        "summary": "远离喧嚣，拥抱自然。这条经典的周末徒步路线，风景优美，难度适中，适合全家出行。",
+        "userName": "户外小分队",
+        "timestamp": "3天前"
+      },
+      {
+        "id": "imgp-3",
+        "thumbnail": "https://picsum.photos/seed/imgp3/400/250",
+        "title": "学习新语言的五个技巧",
+        "summary": "想要快速掌握一门新语言？试试这五个经过验证的有效方法，让学习事半功倍。",
+        "userName": "语言学习者",
+        "timestamp": "2024-07-20"
+      }
+    ],
+    "scenarioNoImagePostsData": [
+      {
+        "id": "txtp-1",
+        "title": "关于项目管理的思考",
+        "content": "有效的项目管理不仅仅是工具和流程，更重要的是沟通和协调。本文探讨了在敏捷开发中如何更好地进行跨团队协作...",
+        "userName": "项目经理A",
+        "timestamp": "今天 10:30"
+      },
+      {
+        "id": "txtp-2",
+        "title": "读书笔记：《人类简史》",
+        "content": "这本书从宏大的视角回顾了人类的发展历程，引发了对认知革命、农业革命和科学革命的深刻思考。特别是关于幸福的部分...",
+        "userName": "读者B",
+        "timestamp": "昨天 15:00"
+      },
+      {
+        "id": "txtp-3",
+        "title": "服务器维护公告",
+        "content": "为了提供更稳定的服务，我们将于今晚 23:00 - 次日 01:00 进行服务器维护，期间部分服务可能暂停。感谢您的理解。",
+        "userName": "系统管理员",
+        "timestamp": "今天 09:00"
+      }
+    ],
+    "scenarioLinkListData": [
+      {
+        "id": "link-1",
+        "title": "这是一个外部链接到 Google",
+        "link": "https://www.google.com"
+      },
+      {
+        "id": "link-2",
+        "title": "这是另一个内部链接示例",
+        "link": "/internal/page"
+      },
+      {
+        "id": "link-3",
+        "title": "链接到文档页面",
+        "link": "/docs/getting-started"
+      },
+      {
+        "id": "link-4",
+        "title": "访问我们的博客",
+        "link": "/blog"
+      }
+    ],
+    "scenarioIconNavData": [
+      {
+        "id": "nav-1",
+        "iconUrl": "https://picsum.photos/seed/icon1/64/64",
+        "text": "首页",
+        "link": "/"
+      },
+      {
+        "id": "nav-2",
+        "iconUrl": "https://picsum.photos/seed/icon2/64/64",
+        "text": "电影",
+        "link": "/movies"
+      },
+      {
+        "id": "nav-3",
+        "iconUrl": "https://picsum.photos/seed/icon3/64/64",
+        "text": "剧集",
+        "link": "/series"
+      },
+      {
+        "id": "nav-4",
+        "iconUrl": "https://picsum.photos/seed/icon4/64/64",
+        "text": "动漫",
+        "link": "/anime"
+      },
+      {
+        "id": "nav-5",
+        "iconUrl": "https://picsum.photos/seed/icon5/64/64",
+        "text": "直播",
+        "link": "/live"
+      },
+      {
+        "id": "nav-6",
+        "iconUrl": "https://picsum.photos/seed/icon6/64/64",
+        "text": "音乐",
+        "link": "/music"
+      },
+      {
+        "id": "nav-7",
+        "iconUrl": "https://picsum.photos/seed/icon7/64/64",
+        "text": "游戏",
+        "link": "/games"
+      },
+      {
+        "id": "nav-8",
+        "iconUrl": "https://picsum.photos/seed/icon8/64/64",
+        "text": "体育",
+        "link": "/sports"
+      },
+      {
+        "id": "nav-9",
+        "iconUrl": "https://picsum.photos/seed/icon9/64/64",
+        "text": "教育",
+        "link": "/education"
+      },
+      {
+        "id": "nav-10",
+        "iconUrl": "https://picsum.photos/seed/icon10/64/64",
+        "text": "科技",
+        "link": "/tech"
+      },
+      {
+        "id": "nav-11",
+        "iconUrl": "https://picsum.photos/seed/icon11/64/64",
+        "text": "财经",
+        "link": "/finance"
+      },
+      {
+        "id": "nav-12",
+        "iconUrl": "https://picsum.photos/seed/icon12/64/64",
+        "text": "汽车",
+        "link": "/auto"
+      },
+      {
+        "id": "nav-13",
+        "iconUrl": "https://picsum.photos/seed/icon13/64/64",
+        "text": "时尚",
+        "link": "/fashion"
+      },
+      {
+        "id": "nav-14",
+        "iconUrl": "https://picsum.photos/seed/icon14/64/64",
+        "text": "旅游",
+        "link": "/travel"
+      },
+      {
+        "id": "nav-15",
+        "iconUrl": "https://picsum.photos/seed/icon15/64/64",
+        "text": "美食",
+        "link": "/food"
+      }
+    ],
+    "mainFooterData": {
+      "columns": [
+        {
+          "title": "导航",
+          "links": [
+            {
+              "text": "首页",
+              "url": "/"
+            },
+            {
+              "text": "电影",
+              "url": "/movies"
+            },
+            {
+              "text": "剧集",
+              "url": "/series"
+            }
+          ]
+        },
+        {
+          "title": "关于我们",
+          "links": [
+            {
+              "text": "公司介绍",
+              "url": "/about"
+            },
+            {
+              "text": "联系我们",
+              "url": "/contact"
+            }
+          ]
+        },
+        {
+          "title": "支持",
+          "links": [
+            {
+              "text": "帮助中心",
+              "url": "/help"
+            },
+            {
+              "text": "服务条款",
+              "url": "/terms"
+            }
+          ]
+        }
+      ],
+      "social": [
+        {
+          "icon": "icon-weibo",
+          "url": "#"
+        },
+        {
+          "icon": "icon-wechat",
+          "url": "#"
+        }
+      ],
+      "apps": [
+        {
+          "icon": "icon-ios",
+          "url": "#"
+        },
+        {
+          "icon": "icon-android",
+          "url": "#"
+        }
+      ],
+      "copyright": "© 2024 Your Video Site. All rights reserved."
+    }
+  }
+}
